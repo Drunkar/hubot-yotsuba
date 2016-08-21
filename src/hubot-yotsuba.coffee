@@ -36,6 +36,6 @@ module.exports = (robot) ->
           if err
             message = "エラーっぽい"
           else
-            message = $("#main-image").attribs.src
+            message = $("#main-image").attr("src")
 
       msg.send message
