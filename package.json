@@ -1,0 +1,25 @@
+
+{
+  "name": "hubot-yotsuba",
+  "version": "1.0.0",
+  "description": "Yotsubato! image reply.",
+  "main": "index.coffee",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Drunkar/hubot-yotsuba"
+  },
+  "keywords": [
+    "hubot"
+  ],
+  "author": "Drunkar",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio-httpcli": ">=0.6.8"
+  },
+  "devDependencies": {
+  },
+  "bugs": {
+    "url": "https://github.com/Drunkar/hubot-yotsuba/issues"
+  },
+  "homepage": "https://github.com/Drunkar/hubot-yotsuba"
+}
