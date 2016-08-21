@@ -15,6 +15,7 @@
 #
 
 cheerio = require('cheerio-httpcli')
+YOTSUBA_BASE_URL = "http://gazoreply.jp/"
 
 module.exports = (robot) ->
 
@@ -26,8 +27,8 @@ module.exports = (robot) ->
                 message = "エラーっぽい"
             else
                 image_urls = []
-                $("#photo-list img").map (d,i) ->
-                    image_urls.push i.attribs.src
+                $("#photo-list a").map (d,a) ->
+                    image_urls.push YOTSUBA_BASE_URL + a.attribs.href + "/f.jpg"
                 randnum = Math.floor( Math.random() * image_urls.length)
                 message = image_urls[randnum]
 
