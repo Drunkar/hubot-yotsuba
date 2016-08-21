@@ -38,5 +38,5 @@ module.exports = (robot) ->
           else
             message = $("#main-image")[0].attr("src")
 
-      console.log "message"
+      console.log message
       msg.send message
