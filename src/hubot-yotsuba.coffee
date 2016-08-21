@@ -15,21 +15,27 @@
 #
 
 cheerio = require('cheerio-httpcli')
-YOTSUBA_BASE_URL = "http://gazoreply.jp/"
+YOTSUBA_BASE_URL = "http://gazoreply.jp"
 
 module.exports = (robot) ->
 
-    robot.respond /(yotsuba|よつば)/i, (msg) ->
-        console.log "fetching..."
-        cheerio.fetch "http://gazoreply.jp/tag/74/", {}, (err, $, res) ->
-            console.log "done"
-            if err
-                message = "エラーっぽい"
-            else
-                image_urls = []
-                $("#photo-list a").map (d,a) ->
-                    image_urls.push YOTSUBA_BASE_URL + a.attribs.href + "/f.jpg"
-                randnum = Math.floor( Math.random() * image_urls.length)
-                message = image_urls[randnum]
+  robot.respond /(yotsuba|よつば)/i, (msg) ->
+    console.log "fetching..."
+      cheerio.fetch "http://gazoreply.jp/tag/74/", {}, (err, $, res) ->
+        console.log "done"
+        if err
+          message = "エラーっぽい"
+        else
+          image_urls = []
+          $("#photo-list a").map (d,a) ->
+            image_urls.push YOTSUBA_BASE_URL + a.attribs.href + "/f.jpg"
 
-            msg.send message
+          randnum = Math.floor( Math.random() * image_urls.length)
+          second_url = image_urls[randnum]
+          cheerio.fetch second_url, {}, (err, $, res_second) ->
+            if err
+              message = "エラーっぽい"
+            else
+              message = $("#main-image").attribs.src
+
+        msg.send message
